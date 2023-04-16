@@ -9,6 +9,12 @@ import Profile from './pages/Profile';
 import ProtectedRoute from './pages/ProtectedRoute';
 import Basket from './pages/Basket';
 import Error404 from './pages/Error404';
+import ProtectedAdmin from './pages/Admin/ProtectedAdmin';
+import AdminHome from './pages/Admin/Home';
+import Orders from './pages/Admin/Orders';
+import AdminProducts from './pages/Admin/Products';
+import AdminProductDetail from './pages/Admin/ProductDetail';
+import NewProduct from './pages/Admin/Products/new';
 
 function App() {
   return (
@@ -24,6 +30,16 @@ function App() {
             <Route path="/basket" Component={Basket} />
             <Route element={<ProtectedRoute />}>
 						  <Route path="/profile" element={<Profile />} />
+					  </Route>
+            <Route element={<ProtectedAdmin />}>
+              <Route index path="/admin" element={<AdminHome />} />
+						  <Route path="/admin/orders" element={<Orders/>} />
+						  <Route path="/admin/products" element={<AdminProducts />} />
+              <Route
+							path="/admin/products/:product_id"
+							element={<AdminProductDetail />}
+						  />
+              <Route path="/admin/products/new" element={<NewProduct />} />
 					  </Route>
             <Route path="*" Component={Error404} />
           </Routes>
